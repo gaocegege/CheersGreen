@@ -1,0 +1,40 @@
+[ 2014-12-02T08:27:41+08:00 ]  
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000058s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000238s ]
+NOTIC: [8] Undefined index: REQUEST_METHOD /Users/gaoce/Sites/ThinkPHP/Library/Think/App.class.php 第 28 行.
+NOTIC: [8] Undefined index: REQUEST_URI /Users/gaoce/Sites/ThinkPHP/Library/Think/Dispatcher.class.php 第 135 行.
+NOTIC: [8] Use of undefined constant _PHP_FILE_ - assumed '_PHP_FILE_' /Users/gaoce/Sites/ThinkPHP/Library/Think/Dispatcher.class.php 第 185 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000413s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000464s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+NOTIC: [8] Use of undefined constant __ROOT__ - assumed '__ROOT__' /Users/gaoce/Sites/ThinkPHP/Library/Behavior/ContentReplaceBehavior.class.php 第 31 行.
+NOTIC: [8] Use of undefined constant __ROOT__ - assumed '__ROOT__' /Users/gaoce/Sites/ThinkPHP/Library/Behavior/ContentReplaceBehavior.class.php 第 38 行.
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000046s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000110s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005264s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.005311s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000099s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000123s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000452s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000489s ]
+
+[ 2014-12-02T10:37:26+08:00 ] ::1 /~gaoce/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000188s ]
+
+[ 2014-12-02T10:38:11+08:00 ] ::1 /~gaoce/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000170s ]
+
+[ 2014-12-02T10:38:46+08:00 ] ::1 /~gaoce/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000184s ]
+
