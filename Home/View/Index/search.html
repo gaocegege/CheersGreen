@@ -60,18 +60,18 @@
 										<div class="book-img"><img src="{$book.bImage}"></div>
 									</div>
 									<div  class="col-sm-3" style="font-weight:bold">
-										<p>书名：<span>{$book.bName}</span></p>
-										<p>作者：<span>{$book.bAuthor}</span></p>
-										<p>出版日期：<span>{$book.bTime}</span></p>
+										<p>书名：<span>{$book.bookname}</span></p>
+										<p>作者：<span>{$book.author}</span></p>
+										<p>出版日期：<span>{$book.version}</span></p>
 										<p>出版社：<span>{$book.bPublisher}</span></p>
-                                        <p style="display:none"><span>{$book.bComment}</span></p>
+                                        <p style="display:none"><span>{$book.description}</span></p>
 									</div>
 									<div class="col-sm-5" style="font-weight:bold">
 										<p>卖家昵称：<span>{$book.bSeller}</span></p>
 										<p>卖家所在地：<span>{$book.bPlace}</span></p>
 									</div>
 									<div class="col-sm-2" style="text-align:center;">
-									    <h4>￥{$book.bPrice}</h4>
+									    <h4>￥{$book.price}</h4>
 										<button class="btn" style="background-color:#A33B32;color:#fff;">下单</button>
 									</div>
 								</div>
