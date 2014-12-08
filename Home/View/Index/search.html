@@ -54,22 +54,19 @@
 					</nav>
 					<div class="books-container" >
 						<volist name="books" id="book">
-							<div class="book-box-container" id="bID{$book.bID}">
+							<div class="book-box-container" id="{$book.id}">
 								<div class="row">
 									<div class="col-sm-2">
-									<!-- add ~gaoce to fit my envi -->
-										<div class="book-img"><img src="/~gaoce{$book.image}"></div>
+										<div class="book-img"><img src="{$book.image}" id="bookImage{$book.id}"></div>
 									</div>
 									<div  class="col-sm-3" style="font-weight:bold">
-										<p>书名：<span>{$book.bookname}</span></p>
-										<p>作者：<span>{$book.author}</span></p>
-										<p>出版日期：<span>{$book.version}</span></p>
-										<p>出版社：<span>{$book.bPublisher}</span></p>
-                                        <p style="display:none"><span>{$book.description}</span></p>
+										<p>书名：<span id="bookName{$book.id}">{$book.bookname}</span></p>
+										<p>作者：<span id="bookAuthor{$book.id}">{$book.author}</span></p>
+										<p>出版日期：<span id="bookVersion{$book.id}">{$book.version}</span></p>
+                                        <p style="display:none"><span id="bookDescription{$book.id}">{$book.description}</span></p>
 									</div>
 									<div class="col-sm-5" style="font-weight:bold">
-										<p>卖家昵称：<span>{$book.bSeller}</span></p>
-										<p>卖家所在地：<span>{$book.bPlace}</span></p>
+										<p>卖家昵称：<span id="bookStore{$book.id}">{$book.store}</span></p>
 									</div>
 									<div class="col-sm-2" style="text-align:center;">
 									    <h4>￥{$book.price}</h4>
@@ -100,18 +97,16 @@ $(function(){
 			while(ele.getAttribute("class")!="book-box-container"){
 				ele = ele.parentNode
 			}
-			var id = "#"+ele.getAttribute('id')+" .col-sm-3 p:nth-child";
-			var bookName = $(id+"(1) span").text();
-			var bookAuthor = $(id+"(2) span").text();
-			var bookTime = $(id+"(3) span").text();
-			var bookPublisher = $(id+"(4) span").text();
-			var bookComment = $(id+"(5) span").text();
-		    var imagePath = "#"+ele.getAttribute("id")+" img";
-		    imagePath = $(imagePath).attr("src");
+
+			var id = ele.getAttribute('id');
+			var bookName = $("#bookName"+id).text();
+			var bookAuthor = $("#bookAuthor"+id).text();
+			var bookTime = $("#bookVersion"+id).text();
+			var bookComment = $("#bookDescription"+id).text();
+		    var imagePath = $("#bookImage"+id).attr("src");
 			$("#detail-book-name").html(bookName);
 			$("#detail-book-author").html(bookAuthor);
 			$("#detail-book-time").html(bookTime);
-			$("#detail-book-publisher").html(bookPublisher);
 			$("#detail-book-img-path").attr("src",imagePath);
 			$("#detail-message-container").html(bookComment);
 			$("#detail-container").show();
