@@ -4,7 +4,6 @@ return array(
 
 	// 输出
 	'SHOW_PAGE_TRACE' =>true, // 显示页面Trace信息
-
 	// 添加数据库配置信息
  	'DB_TYPE'   => 'mysqli', // 数据库类型
  	'DB_HOST'   => '127.0.0.1', // 服务器地址
