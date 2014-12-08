@@ -12,4 +12,7 @@ return array(
  	'DB_PWD'    => 'Zz119911', // 密码
  	'DB_PORT'   => 3306, // 端口
  	'DB_PREFIX' => 'think_', // 数据库表前缀
+
+ 	// Mac用户目录
+ 	'UserDir' 	=> '/~gaoce',
 );
