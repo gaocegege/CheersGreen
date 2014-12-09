@@ -1,138 +1,172 @@
 <include file="Public:header" />
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/search.css">
 </head>
-<body>
-<div class="badge-box">
-	<img src="__PUBLIC__/images/login.png" style="width:100%;height:100%">
-</div>
-<div class="page-header" style="background-color:#FAF1C8;margin-top:0px;height:60px;">
-	<img src="__PUBLIC__/images/search-logo.png">
-</div>
-<div class="container">
-	<div class="row">
-		<div class="col-sm-4">
-			<div class="row" id="detail-container" style="background-color:#F8E2BD;">
-				<div class="col-sm-12">
-					<div class="row">
-						<div class="col-sm-7" style="padding:10px;">
-							<div class="book-detail-img"><img src="" id="detail-book-img-path" style="width:100%;height:100%" /></div>
-						</div>
-						<div class="col-sm-5" id="detail-message" style="padding:10px;">
-						    <div><p>书名：</p><p id="detail-book-name" style="text-align:center"></p></div>
-						    <div><p>作者：</p><p id="detail-book-author" style="text-align:center"></p></div>
-							<div><p>类别：</p><p id="detail-book-type" style="text-align:center">教材</p></div>
-							<div><p>出版时间：</p><p id="detail-book-time" style="text-align:center"></p></div>
-							<div><p>出版社：</p><p id="detail-book-publisher" style="text-align:center"></p></div>
-						</div>
-					</div>
-					<div class="row" id="detail-message-container"></div>
-				</div>
-			</div>
-		</div>
-		<div class="col-sm-1" style="width:10px;"></div>
-		<div class="col-sm-7">
-			<div class="row">
-				<div class="col-sm-8">
-    			    <div class="input-group" style="border:4px solid #A33B32;">
-    			    	<input type="text" class="form-control" style="background-color:#FBEBD1;height:100%;border:0px;height:32px" placeholder="搜索书籍">
-    			    	<span class=" input-group-addon" style="color:#A33B32;background-color:#FBEBD1;border:0;cursor:pointer"  title="搜索"><span class="glyphicon glyphicon-search"></span></span>
-    			    </div>
-    				
-    			</div>
-    			<div class="col-sm-2"><button class="btn" id="search-btn" >&nbsp; 搜&nbsp; 索 &nbsp;</button></div>  <!-- ajax string q -->
-    			<div class="col-sm-2"><button class="btn" id="advance-search-btn">高级搜索</button></div>
-			</div>
-			<div class="row" style="margin-top:10px;">
-				<div class="nav-container">
-					<nav class="navbar" role="navigation" style="background-color:#A33B32;border:0">
-					   <div>
-					      <ul class="nav navbar-nav">
-					         <li class="{$nav_active=='all'?'active':''}"><a href="__URL__/search/class/all">综合</a></li> <!-- class -->					         <li class="{$nav_active=='price'?'active':''}"><a href="__URL__/search/class/price">价格</a></li>
-					         <li class="{$nav_active=='reputation'?'active':''}"><a href="__URL__/search/class/reputation">信誉</a></li>
-					      </ul>
-					   </div>
-					</nav>
-					<div class="books-container" >
-						<volist name="books" id="book">
-							<div class="book-box-container" id="{$book.id}">
-								<div class="row">
-									<div class="col-sm-2">
-										<div class="book-img"><img src="/~gaoce{$book.image}" id="bookImage{$book.id}"></div>
-									</div>
-									<div  class="col-sm-3" style="font-weight:bold">
-										<p>书名：<span id="bookName{$book.id}">{$book.bookname}</span></p>
-										<p>作者：<span id="bookAuthor{$book.id}">{$book.author}</span></p>
-										<p>出版日期：<span id="bookVersion{$book.id}">{$book.version}</span></p>
-                                        <p style="display:none"><span id="bookDescription{$book.id}">{$book.description}</span></p>
-									</div>
-									<div class="col-sm-5" style="font-weight:bold">
-										<p>卖家昵称：<span id="bookStore{$book.id}">{$book.store}</span></p>
-									</div>
-									<div class="col-sm-2" style="text-align:center;">
-									    <h4>￥{$book.price}</h4>
-										<button class="btn" style="background-color:#A33B32;color:#fff;">下单</button>
-									</div>
-								</div>
-							</div>
-						</volist>
-					</div>
-			    </div>
-			</div>
-		</div>
-	</div>
-</div>
-<div id="left-arrow">
-	<img src="__PUBLIC__/images/left-arrow.png" />
-</div>
-</body>
-<script type="text/javascript"><!-- js 控制左列detail高度-->
-var arrow_width=0;
-$(function(){
-	var height = $(".container").height();
-	$("#detail-container").hide();
-	$("#detail-container").height(height+"px");
-	
-	$(".book-box-container").hover(function(e){
-		    var ele = e.target;
-			while(ele.getAttribute("class")!="book-box-container"){
-				ele = ele.parentNode
-			}
 
-			var id = ele.getAttribute('id');
-			var bookName = $("#bookName"+id).text();
-			var bookAuthor = $("#bookAuthor"+id).text();
-			var bookTime = $("#bookVersion"+id).text();
-			var bookComment = $("#bookDescription"+id).text();
-		    var imagePath = $("#bookImage"+id).attr("src");
-			$("#detail-book-name").html(bookName);
-			$("#detail-book-author").html(bookAuthor);
-			$("#detail-book-time").html(bookTime);
-			$("#detail-book-img-path").attr("src",imagePath);
-			$("#detail-message-container").html(bookComment);
-			$("#detail-container").show();
-			if(arrow_width==0){
-				arrow_width = $(".nav-container").offset().left-$("#detail-container").width()-$("#detail-container").offset().left;
-				$("#left-arrow").css("width",arrow_width+"px");
-			}
-			var arrow_top = $("#"+ele.getAttribute('id')).offset().top;
-			$("#left-arrow").css("top",arrow_top+"px");
-			var arrow_left = $("#"+ele.getAttribute('id')).offset().left-arrow_width-7;
-		
-			$("#left-arrow").css("left",arrow_left+"px");
-			$("#left-arrow").css("display","block");
-		},
-		function(e){
-			$("#detail-container").hide();
-			$("#left-arrow").css("display","none");
-		});
-	var arrow_height = $(".book-box-container").height();
-	$("#left-arrow").css("height",arrow_height+"px");
-	var badge_height = $(".page-header").height()*1.5;
-	var badge_width = badge_height*0.8;
-	$(".badge-box").css("height",badge_height+"px");
-	$(".badge-box").css("width",badge_width+"px");
-	var badge_left = $("#advance-search-btn").offset().left+$("#advance-search-btn").width()-badge_width+30;
-	$(".badge-box").css("left",badge_left+"px");
+<body>
+    <div class="badge-box">
+        <img src="__PUBLIC__/images/login.png" style="width:100%;height:100%">
+    </div>
+    <div class="page-header" style="background-color:#FAF1C8;margin-top:0px;height:60px;">
+        <img src="__PUBLIC__/images/search-logo.png">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="row" id="detail-container" style="background-color:#F8E2BD;">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-7" style="padding:10px;">
+                                <div class="book-detail-img"><img src="" id="detail-book-img-path" style="width:100%;height:100%" />
+                                </div>
+                            </div>
+                            <div class="col-sm-5" id="detail-message" style="padding:10px;">
+                                <div>
+                                    <p>书名：</p>
+                                    <p id="detail-book-name" style="text-align:center"></p>
+                                </div>
+                                <div>
+                                    <p>作者：</p>
+                                    <p id="detail-book-author" style="text-align:center"></p>
+                                </div>
+                                <div>
+                                    <p>类别：</p>
+                                    <p id="detail-book-type" style="text-align:center">教材</p>
+                                </div>
+                                <div>
+                                    <p>出版时间：</p>
+                                    <p id="detail-book-time" style="text-align:center"></p>
+                                </div>
+                                <div>
+                                    <p>出版社：</p>
+                                    <p id="detail-book-publisher" style="text-align:center"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="detail-message-container"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1" style="width:10px;"></div>
+            <div class="col-sm-7">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="input-group" style="border:4px solid #A33B32;">
+                            <input type="text" class="form-control" style="background-color:#FBEBD1;height:100%;border:0px;height:32px" placeholder="搜索书籍">
+                            <span class=" input-group-addon" style="color:#A33B32;background-color:#FBEBD1;border:0;cursor:pointer" title="搜索"><span class="glyphicon glyphicon-search"></span></span>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn" id="search-btn">&nbsp; 搜&nbsp; 索 &nbsp;</button>
+                    </div>
+                    <!-- ajax string q -->
+                    <div class="col-sm-2">
+                        <button class="btn" id="advance-search-btn">高级搜索</button>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:10px;">
+                    <div class="nav-container">
+                        <nav class="navbar" role="navigation" style="background-color:#A33B32;border:0">
+                            <div>
+                                <ul class="nav navbar-nav">
+                                    <li class="{$nav_active=='all'?'active':''}"><a href="__URL__/search/class/all">综合</a>
+                                    </li>
+                                    <!-- class -->
+                                    <li class="{$nav_active=='price'?'active':''}"><a href="__URL__/search/class/price">价格</a>
+                                    </li>
+                                    <li class="{$nav_active=='reputation'?'active':''}"><a href="__URL__/search/class/reputation">信誉</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                        <div class="books-container">
+                            <volist name="books" id="book">
+                                <div class="book-box-container" id="{$book.id}">
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            <div class="book-img"><img src="/~gaoce{$book.image}" id="bookImage{$book.id}">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3" style="font-weight:bold">
+                                            <p>书名：<span id="bookName{$book.id}">{$book.bookname}</span>
+                                            </p>
+                                            <p>作者：<span id="bookAuthor{$book.id}">{$book.author}</span>
+                                            </p>
+                                            <p>出版日期：<span id="bookVersion{$book.id}">{$book.version}</span>
+                                            </p>
+                                            <p style="display:none"><span id="bookDescription{$book.id}">{$book.description}</span>
+                                            </p>
+                                        </div>
+                                        <div class="col-sm-5" style="font-weight:bold">
+                                            <p>卖家昵称：<span id="bookStore{$book.id}">{$book.store}</span>
+                                            </p>
+                                        </div>
+                                        <div class="col-sm-2" style="text-align:center;">
+                                            <h4>￥{$book.price}</h4>
+                                            <button class="btn" style="background-color:#A33B32;color:#fff;">下单</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </volist>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="left-arrow">
+        <img src="__PUBLIC__/images/left-arrow.png" />
+    </div>
+</body>
+<script type="text/javascript">
+<!-- js 控制左列detail高度-->
+var arrow_width = 0;
+$(function() {
+    var height = $(".container").height();
+    $("#detail-container").hide();
+    $("#detail-container").height(height + "px");
+
+    $(".book-box-container").hover(function(e) {
+            var ele = e.target;
+            while (ele.getAttribute("class") != "book-box-container") {
+                ele = ele.parentNode
+            }
+
+            var id = ele.getAttribute('id');
+            var bookName = $("#bookName" + id).text();
+            var bookAuthor = $("#bookAuthor" + id).text();
+            var bookTime = $("#bookVersion" + id).text();
+            var bookComment = $("#bookDescription" + id).text();
+            var imagePath = $("#bookImage" + id).attr("src");
+            $("#detail-book-name").html(bookName);
+            $("#detail-book-author").html(bookAuthor);
+            $("#detail-book-time").html(bookTime);
+            $("#detail-book-img-path").attr("src", imagePath);
+            $("#detail-message-container").html(bookComment);
+            $("#detail-container").show();
+            if (arrow_width == 0) {
+                arrow_width = $(".nav-container").offset().left - $("#detail-container").width() - $("#detail-container").offset().left;
+                $("#left-arrow").css("width", arrow_width + "px");
+            }
+            var arrow_top = $("#" + ele.getAttribute('id')).offset().top;
+            $("#left-arrow").css("top", arrow_top + "px");
+            var arrow_left = $("#" + ele.getAttribute('id')).offset().left - arrow_width - 7;
+
+            $("#left-arrow").css("left", arrow_left + "px");
+            $("#left-arrow").css("display", "block");
+        },
+        function(e) {
+            $("#detail-container").hide();
+            $("#left-arrow").css("display", "none");
+        });
+    var arrow_height = $(".book-box-container").height();
+    $("#left-arrow").css("height", arrow_height + "px");
+    var badge_height = $(".page-header").height() * 1.5;
+    var badge_width = badge_height * 0.8;
+    $(".badge-box").css("height", badge_height + "px");
+    $(".badge-box").css("width", badge_width + "px");
+    var badge_left = $("#advance-search-btn").offset().left + $("#advance-search-btn").width() - badge_width + 30;
+    $(".badge-box").css("left", badge_left + "px");
 })
 </script>
 <include file="Public:foot" />
