@@ -22,8 +22,8 @@ class IndexController extends Controller {
         $id = $_GET['class'];
         $id = $id==""?"all":$id;
         if($id=="all"){
-            $bookModel = M("Book");
-            $books = $bookModel->select();
+            $bookService = D('Book', 'Service');
+            $books = $bookService->listAll();
             trace($books);
             // $books = array(array("bID"=>"1",
             //                      "bName"=>"数学分析",
