@@ -6,7 +6,7 @@ class BookService extends Model{
 
 	public function listAll(){
 		$bookModel = D('Book');
-		return $bookModel->listAll()->select();
+		return $bookModel->listAll()->join("think_bookclass on think_book.classid = think_bookclass.id")->select();
 	}
 
 	public function getDefaultSearchResult($page, $pagenum, $class){
