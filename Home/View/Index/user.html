@@ -1,0 +1,171 @@
+<include file="Public:header"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/user.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/global.css">
+<script type="text/javascript" src="__PUBLIC__/js/jquery.jscroll.js"></script>
+</head>
+<body>
+<div class="badge-box" style="display:none"> <!-- ！！！ -->
+	<img src="__PUBLIC__/images/login.png" style="width:100%;height:100%" >
+</div>
+<div class="page-header" style="background-color:#FAF1C8;margin-top:0px;height:60px;">
+	<img src="__PUBLIC__/images/search-logo.png" >
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-4">
+			<div class="user-info">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="portrait-img"><img src="{$user_portrait}"></div>
+					</div>
+					<div class="col-sm-3">
+						<div class="sex-img"><if condition="($user_sex eq man)"><img src="http://localhost/CheersGreen/Public/images/man.png">
+						<else /><img src="http://localhost/CheersGreen/Public/images/woman.png" class="sex-img">
+						</if></div>
+					</div>
+					<div class="col-sm-5">
+						<span class="user-name">{$user_name}</span>
+						<span class="user-level">LV. {$user_level} 老生</span>
+					</div>
+				</div>
+				<div class="horizontal-line"></div>
+				<div class="row">
+					<div class="col-sm-3">邮箱：</div>
+					<div class="col-sm-7"><input type="text" value="{$user_email}" id="text_email" disabled="true"></div>
+					<div class="col-sm-2"><span class="glyphicon glyphicon-pencil" style="cursor: pointer;" title="修改" onclick="edit_info('#text_email')"></span></div>
+				</div>
+				<div class="row">
+					<div class="col-sm-3">手机：</div>
+					<div class="col-sm-7"><input type="text" value="{$user_tel}" id="text_tel" disabled="true"></div>
+					<div class="col-sm-2"><span class="glyphicon glyphicon-pencil" style="cursor: pointer;" title="修改" onclick="edit_info('#text_tel')"></span></div>
+				</div>
+				<div class="row">
+					<div class="col-sm-3">QQ：</div>
+					<div class="col-sm-7"><input type="text" value="{$user_qq}" id="text_qq" disabled="true"></div>
+					<div class="col-sm-2"><span class="glyphicon glyphicon-pencil" style="cursor: pointer;" title="修改" onclick="edit_info('#text_qq')"></span></div>
+				</div>
+				<div class="horizontal-line"></div>
+			</div>
+		</div>
+		<div class="col-sm-8">
+			<div class="transaction">
+				<div class="transaction-header">交易记录</div>
+				<div id="transaction-content">
+					<volist name="books" id="book">
+						<div class="row">
+							<div class="col-sm-7">
+								<div class="transaction-box" id="{$book.id}">
+									<div class="row">
+										<div class="col-sm-3">
+											<img src="__ROOT__/{$book.image}" id="bookImage{$book.id}" style="width:100%;">
+										</div> 
+										<div  class="col-sm-5" style="font-weight:bold;text-align:center;line-height:200%">
+											<p>书名：<span id="bookName{$book.id}">{$book.bookname}</span></p>
+											<p>作者：<span id="bookAuthor{$book.id}">{$book.author}</span></p>
+											<p>类别：<span id="bookType{$book.id}">{$book.type}</span></p>
+											<p>出版日期：<span id="bookVersion{$book.id}">{$book.version}</span></p>
+	                                        <p style="display:none"><span id="bookDescription{$book.id}">{$book.description}</span></p>
+										</div>
+										<div class="col-sm-4" style="text-align:center;">
+										    <h2>￥{$book.price}</h2>
+											<p>交易时间：{$transaction_time}</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-1"></div>
+							<div class="col-sm-4">
+								<div class="transaction-box">
+									<div class="row">
+										<div class="col-sm-3"><img src="http://localhost/CheersGreen/Public/images/portrait.jpg"></div>
+										<div class="col-sm-2"><img src="http://localhost/CheersGreen/Public/images/man.png"></div>
+										<div class="col-sm-7"><p>未饮身先醉</p><p><b style="color:#000">LV.3 老生</b></p></div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">邮箱：</div>
+										<div class="col-sm-8">{$user_email}</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">手机：</div>
+										<div class="col-sm-8">{$user_tel}</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">QQ：</div>
+										<div class="col-sm-8">{$user_qq}</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-7">
+								<div class="transaction-box" id="{$book.id}">
+									<div class="row">
+										<div class="col-sm-3">
+											<img src="__ROOT__/{$book.image}" id="bookImage{$book.id}" style="width:100%;">
+										</div> 
+										<div  class="col-sm-5" style="font-weight:bold;text-align:center;line-height:200%">
+											<p>书名：<span id="bookName{$book.id}">{$book.bookname}</span></p>
+											<p>作者：<span id="bookAuthor{$book.id}">{$book.author}</span></p>
+											<p>类别：<span id="bookType{$book.id}">{$book.type}</span></p>
+											<p>出版日期：<span id="bookVersion{$book.id}">{$book.version}</span></p>
+	                                        <p style="display:none"><span id="bookDescription{$book.id}">{$book.description}</span></p>
+										</div>
+										<div class="col-sm-4" style="text-align:center;">
+										    <h2>￥{$book.price}</h2>
+											<p>交易时间：{$transaction_time}</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-1"></div>
+							<div class="col-sm-4">
+								<div class="transaction-box">
+									<div class="row">
+										<div class="col-sm-3"><img src="http://localhost/CheersGreen/Public/images/portrait.jpg"></div>
+										<div class="col-sm-2"><img src="http://localhost/CheersGreen/Public/images/man.png"></div>
+										<div class="col-sm-7"><p>未饮身先醉</p><p><b style="color:#000">LV.3 老生</b></p></div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">邮箱：</div>
+										<div class="col-sm-8">{$user_email}</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">手机：</div>
+										<div class="col-sm-8">{$user_tel}</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">QQ：</div>
+										<div class="col-sm-8">{$user_qq}</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</volist>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+<script type="text/javascript">
+(function($){
+	$(window).load(function(){
+		$("body,#transaction-content").mCustomScrollbar({
+			scrollButtons:{
+				enable:true
+			},
+			scrollbarPosition:"outside",
+		});
+	});
+})(jQuery);
+</script>
+<script type="text/javascript">
+function edit_info(text_id){
+	$(text_id).attr("disabled",false);
+	$(text_id).focus();
+	$(text_id).on("blur",null,function(){
+		$(text_id).attr("disabled",true);
+	})
+}
+</script>
+<include file="Public:foot" />

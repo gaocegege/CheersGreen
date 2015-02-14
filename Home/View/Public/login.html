@@ -1,0 +1,108 @@
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/login.css">
+<!-- 登录表单 -->
+<!-- 路由:login
+     id='username' 用户名 text
+     id='password' 密码 text
+     id='free_login' 七天内面登陆 checkbox
+ -->
+<div class="login-container">
+	<div class="login-message-box">
+		<form class="form-Verticle" role="form" method="POST" action='login'>
+			<div class="input-group">
+				<span class="input-group-addon" style="color:#C05B40;background-color:rgba(248,226,189,0.3);border:0;" title="用户名"><span class="glyphicon glyphicon-user"></span></span>
+				<input type="text" id="username" class="form-control" placeholder="昵称/手机/邮箱" style="font-size:1.0em">
+			</div>
+			<div class="input-group">
+				<span class="input-group-addon" style="color:#C05B40;background-color:rgba(248,226,189,0.3);border:0;" title="密码"><span class="glyphicon glyphicon-lock"></span></span>
+				<input type="password" id="password" class="form-control" placeholder="请输入密码">
+			</div>
+			<div class="input-group" style="display:inline-block;">
+				<div><label><input type="checkbox" id="free_login">七天内免登录</label></div>
+				<div><a href="#">忘记密码？</a> <a href="#" data-toggle="modal" data-target="#myModal">注册新用户</a></div>
+			</div>
+			<div class="input-group" style="display:inline-block;">
+				<input type="submit" class="btn btn-warning" value="登录" style="float:right" />
+			</div>
+		</form>
+	</div>
+	<div class="trapezoid"></div>
+	<img src="__PUBLIC__/images/login.png">
+</div>
+<!-- 注册表单 -->
+
+<!-- 路由:reg
+	 id='reg_zhuceyouxiang' 注册邮箱 text
+     id='reg_yanzhengma' 邮箱验证码 text
+     id='reg_denglumima' 登录密码  text
+     id='reg_nicheng' 昵称  text
+     id='reg_youxiang' 常用邮箱 text
+     id='reg_shouji' 手机号码 text
+     id='reg_qq' qq号码 text
+ -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+      	<form role="form" method="post" action="reg">
+         	<div class="modal-header">
+           		<button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">
+                  &times;
+            	</button>
+            	<h4 class="modal-title" id="myModalLabel" style="text-align:center;color:#fff;">
+               CheersGreen 用户注册
+            	</h4>
+         	</div>
+         	<div class="modal-body">
+	            <div class="row">
+	            	<div class="col-sm-6" id="first-col">
+	            		<div class="input-group">
+							<span class="input-group-addon" style="color:#aaa;background-color:rgba(255,255,255,1);border:0;" title="注册邮箱"><span class="glyphicon glyphicon-user"></span></span>
+							<input type="text" id="reg_zhuceyouxiang" class="form-control" placeholder="注册邮箱">
+							<span class="input-group-addon" style="color:#aaa;background-color:rgba(248,226,189,0.3);border:0;" title="注册邮箱">@sjtu.edu.cn</span></span>
+						</div>
+						<div class="input-group">
+							<button class="btn btn-warning" id="btn_yanzhengma" style="float:left">发送验证码</button>
+							<button class="btn btn-warning" id="btn_youxianglianjie" style="float:left">邮箱链接</button>
+							<input type="text" placeholder="验证码" id="reg_yanzhengma" class="form-control">
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon" style="color:#aaa;background-color:rgba(255,255,255,1);border:0;" title="注册密码"><span class="glyphicon glyphicon-lock"></span></span>
+							<input type="text" id="reg_denglumima" class="form-control" placeholder="请输入注册密码">
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon" style="color:#aaa;background-color:rgba(255,255,255,1);border:0;" title="确认密码"><span class="glyphicon glyphicon-lock"></span></span>
+							<input type="text" id="reg_querenmima" class="form-control" placeholder="请再次输入注册密码">
+						</div>
+	            	</div>
+	            	<div class="col-sm-6" id="second-col">
+	            		<div class="input-group">
+							<span class="input-group-addon" style="color:#aaa;background-color:rgba(255,255,255,1);border:0;" title="昵称"><span class="glyphicon glyphicon-user"></span></span>
+							<input type="text" id="reg_nicheng" class="form-control" placeholder="请输入昵称">
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon" style="color:#aaa;background-color:rgba(255,255,255,1);border:0;" title="昵称"><span class="glyphicon glyphicon-envelope"></span></span>
+							<input type="text" placeholder="请输入常用邮箱" id="reg_youxiang" class="form-control">
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon" style="color:#aaa;background-color:rgba(255,255,255,1);border:0;" title="昵称"><span class="glyphicon glyphicon-phone-alt"></span></span>
+							<input type="text" id="reg_shouji" class="form-control" placeholder="请输入常用手机号码">
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon" style="color:#aaa;background-color:rgba(255,255,255,1);border:0;" title="昵称">Q </span>
+							<input type="text" id="reg_qq" class="form-control" placeholder="请输入常用QQ号码">
+						</div>
+	            	</div>
+	            </div>
+            
+	        </div>
+	        <div class="modal-footer">
+	         	<label><input type="checkbox">我已阅读<a href="#">用户说明</a></label>
+	            <button type="submit" class="btn btn-warning">
+	               注册
+	            </button>
+	        </div>
+         </form>
+      </div><!-- /.modal-content -->
+   </div><!-- /.modal -->
+</div>
